@@ -3,6 +3,7 @@ import { IoEyeSharp as ShowPassword } from "react-icons/io5";
 import { FaEyeSlash as HidePassword } from "react-icons/fa6";
 import { SiGnuprivacyguard as Signup } from "react-icons/si";
 
+
 import Header from "../components/Header";
 import Button from "../components/Button";
 import Card from "../components/Card";
@@ -23,6 +24,19 @@ function Login() {
 
   function handlePasswordChange(event) {
     setPassword(event.target.value);
+  }
+  function handleLogin(event) {
+    event.preventDefault()
+    const storedEmail = localStorage.getItem("email");
+    const storedPassword = localStorage.getItem("password");
+  
+    if (email === storedEmail && password === storedPassword) {
+      // Login successo
+      // Puoi aggiungere qui il codice per reindirizzare l'utente alla dashboard o ad un'altra pagina dopo il login
+    } else {
+      // Login fallito
+      alert("Credenziali non valide. Per favore, riprova.");
+    }
   }
 
   return (
@@ -45,7 +59,7 @@ function Login() {
           </div>
           {/* Button div */}
           <div className="w-full">
-            <Button title="Login" />
+            <Button title="Login" onClick={handleLogin}/>
           </div>
         </form>
       </Card>
